@@ -8,12 +8,12 @@ There have been several approaches to analyzing music based off audio features, 
 3. Enter artist name and song name then press Predict Song
 
 ### NLP:
-* tokenizing
-* removal of punctuation
+* Tokenizing
+* Removal of punctuation
 * Stop words
 * Porter Stemming algorithm
-* tf-idf vectors
-* normalizing the vectors
+* TF-IDF vectors
+* Normalizing the vectors
 
 ### Clustering:
 http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
