@@ -1,0 +1,56 @@
+{% extends "fundamentals/header2.html" %}
+
+{% block content %}
+
+{% load staticfiles %}
+<header>
+    <div class="container" id="maincontent" tabindex="-1">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- <img class="img-responsive" src="{%static 'img/textblook2.png' %}" alt=""> -->
+                <div class="intro-text">
+                    <h4 class="name">Search for your Textbooks</h4>
+                    <!-- <hr class="star-light"> -->
+                      <form method="get" action="/textbooks/{{request.GET.q.slug}}" class="navbar-form">
+                        <div class="form-group">
+                          <input type="search" name="q" id="searched_item" class="form-control" autocomplete="off" placeholder="Search for book by title, isbn, or author" style="max-width: 700px;width: 700px;color: threeddarkshadow;">
+                        </div>
+                        <input type="submit" class="btn" value="Search" >
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div>
+  {% for book in object_list %}
+    <div class="row">
+        <div class="col-lg-2">
+          <br>
+          {% if book.image == 'no' %}
+            <img src= "{%static 'img/icon2.png' %}" class="img_book_list" alt="face">
+          {% else %}
+            <img src= "{{book.image}}" class="img_book_list" alt="face">
+          {% endif %}
+        </div>
+        <div class="col-lg-8">
+          <h3>Title: {{book.title}}</h3>
+          <h3>Author: {{book.author}}</h3>
+          <h3>ISBN: {{book.isbn}}</h3>
+          <br>
+        </div>
+        <div class="col-lg-2">
+          <br>
+          <br />
+          <br />
+          {% if user.is_authenticated %}
+            <a class="btn btn-primary" href="/textbooks/{{book.slug}}" role="button">View the Details</a>
+          {% else %}
+            <h4> Sign in to See!</h4>
+          {% endif %}
+        </div>
+    </div><hr>
+  {% endfor %}
+</div>
+{% endblock %}

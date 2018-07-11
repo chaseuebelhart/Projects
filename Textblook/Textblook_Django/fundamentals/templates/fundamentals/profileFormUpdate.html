@@ -1,0 +1,59 @@
+{% extends "fundamentals/header2.html" %}
+
+{% block content %}
+{% load staticfiles %}
+
+<link href="{% static 'css/profile_form.css' %}" rel="stylesheet">
+
+<div class="container_updateProfile">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h2>Update Profile</h2>
+      <hr class="star-primary">
+      <form role="form" method="POST"> {% csrf_token %}
+        <div class="form-group float-label-control">
+            {{ form.facebook_username.label_tag }}
+            {{ form.facebook_username }}
+        </div>
+        {% if form.facebook_username.errors %}
+        <div class="alert alert-danger">
+            <strong>{{ form.facebook_username.errors.as_text }}</strong>
+        </div>
+        {% endif %}
+        <center>
+          <input type="submit" class="btn btn-success btn-lg" value="Save" />
+        </center>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <h2>Your Active Post</h2>
+      <hr class="star-primary">
+    </div>
+    <div class="row selling-post-content">
+      <div class="col-sm-9">
+        {% for post in users_posts %}
+        <h3>{{post.textbook.title}}</h3>
+        <img src="{{post.textbook.image}}" class="img-responsive" style='max-height:12em' alt="face">
+        <h5>Selling Price: {{post.sellingPrice}}</h5>
+        <p>Description: {{post.description}}</p>
+        <p>
+          <strong> Condition: {{post.condition}}</strong>
+        </p>
+        <p>
+          {{post.textbook.slug}}
+        </p>
+        <form method = "POST" action="{% url 'book:delete-post' post.textbook.slug post.id  %}">{% csrf_token %}
+          <input type="submit" value="DELETE">
+        </form>
+        <hr />
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="{% static 'js/profile_form.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "fundamentals/header2.html" %}
+
+{% load staticfiles %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+
+<link href="{% static 'css/profile_form.css' %}" rel="stylesheet">
+
+<div class="container_updateProfile">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="text-center">Finish Registration</h2>
+      <hr class="star-night">
+      <form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+          <p><strong>Oh snap!</strong> {{form.errors.as_text}}</p>
+        </div>
+        {% endif %}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <p>
+        </p>
+        <center>
+          <input type="submit" class="btn btn-success btn-lg" value="Save" />
+        </center>
+      </form>
+      <br />
+      <div class="text-center">
+        <ul class="nav nav-tabs nav-justified">
+          <li class="signup_help_tabs"><a data-toggle="tab" href="#where_fb">Where do I find my Facebook username?</a></li>
+          <li class="signup_help_tabs"><a data-toggle="tab" href="#why_fb">Why do you need my Facebook username?</a></li>
+          <li class="signup_help_tabs"><a data-toggle="tab" href="#why_email">Why do you need my university email?</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div id="where_fb" class="tab-pane fade">
+            <h3>Where do I find my Facebook username?</h3>
+            <hr class="star-bright">
+            <p>Click <a href="https://www.facebook.com/">here</a>, sign-in, then go to your profile page. Your Facebook username comes after the www.facebook.com portion of the url.</p>
+            <br />
+            <img src="{% static 'img/facebook_username.png' %}" />
+          </div>
+          <div id="why_fb" class="tab-pane fade">
+            <h3>Why do you need my Facebook username?</h3>
+            <hr class="star-primary">
+            <p>Textblook connects you with other local college students. We use Facebook as a means for you to communicate with fellow university students. In order for us to connect you properly, we need your Facebook username so we can setup Facebook messenger for you.</p>
+          </div>
+          <div id="why_email" class="tab-pane fade">
+            <h3>Why do you need my university email?</h3>
+            <hr class="star-night">
+            <p>We want to make sure that everyone in the Textblook community is actually apart of the university they say they are.  Your university email is unique to active students so you can feel safe when connecting to other students.</p>
+          </div>
+        </div>
+        <br />
+        <br />
+      </div>
+    </div>
+  </div>
+  <hr />
+</div>
+
+  <script src="{% static 'js/profile_form.js' %}"></script>
+
+{% endblock %}

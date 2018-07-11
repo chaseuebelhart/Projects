@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{# Don't forget that one ! #}
+{% load static %}
+
+{% block content %}
+<div>
+<h1>hiii</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" />
+                <div class="form-group">
+          <input type="search" name="q" id="searched_item" class="form-control" autocomplete="off" placeholder="Search for book by title, isbn, or author" style="max-width: 700px;width: 700px;color: threeddarkshadow;">
+        </div>
+        <input type="submit" class="btn" value="Search" >
+    </form>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+
+{{ form.media }}
+{% endblock %}

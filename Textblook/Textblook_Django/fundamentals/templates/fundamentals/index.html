@@ -1,0 +1,50 @@
+{% extends "fundamentals/header2.html" %}
+
+{% block content %}
+{% load staticfiles %}
+    <!-- Header -->
+    <header>
+        <div class="container" id="maincontent" tabindex="-1">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="{%static 'img/textblook2.png' %}" alt="">
+                    <div class="intro-text">
+                        <h2 class="name">Buy and Sell Textbooks with Other Students</h2>
+                        <!-- <hr class="star-light"> -->
+                          <form method="get" action="/textbooks/{{request.GET.q.slug}}" class="navbar-form">
+                            <div class="form-group">
+                              <input type="search" name="q" id="searched_item" class="form-control" autocomplete="off" placeholder="Search for book by title, isbn, or author" style="max-width: 700px;width: 700px;color: threeddarkshadow;">
+                            </div>
+                            <input type="submit" class="btn" value="Search" >
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>About</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2">
+                    <p>Textblook connects you with other local college students so you can buy and sell textbooks and get the biggest bang for your buck. Sign in through Facebook and enter your Facebook Username and your set to start buying and selling books!</p>
+                </div>
+                <div class="col-lg-4">
+                    <p>We use Facebook as a means to connect you and other students ensuring safety at every step.  To message someone about a textbook simply press the Message Me button on the page of the book you want.  It's that easy!</p>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="/textbooks" class="btn btn-lg btn-outline">
+                        Search for Textbooks
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
